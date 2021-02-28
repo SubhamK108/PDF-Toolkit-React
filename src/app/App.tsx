@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import '../assets/App.css';
 
-const App: React.FC = () => {
+const App: React.FC = (): ReactElement => {
     return (
         <div>
 
