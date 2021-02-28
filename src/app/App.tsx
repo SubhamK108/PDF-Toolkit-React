@@ -1,23 +1,25 @@
 import React from 'react';
-import './App.css';
+import '../assets/App.css';
 
-const App = () => {
+const App: React.FC = () => {
     return (
-        <div className="App">
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-                <h1>Hello World!</h1>
-            </header>
+        <div>
+
+            <div className="header">
+                <h1>PDF Toolkit</h1>
+            </div>
+
+            <div className="tools">
+                <h1>Available Tools</h1>
+            </div>
+
+            <div className="tools-section">
+                <a className="button" href="/">Button 1</a>
+                <a className="button" href="/">Button 2</a>
+                <a className="button" href="/">Button 3</a>
+                <a className="button" href="/">Button 4</a>
+            </div>
+
         </div>
     );
 }
