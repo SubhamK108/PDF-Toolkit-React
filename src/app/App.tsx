@@ -1,24 +1,12 @@
 import React, { ReactElement } from 'react';
 import '../assets/App.css';
+import Home from '../components/Home';
 
 const App: React.FC = (): ReactElement => {
     return (
         <div>
 
-            <div className="header">
-                <h1>PDF Toolkit</h1>
-            </div>
-
-            <div className="tools">
-                <h1>Available Tools</h1>
-            </div>
-
-            <div className="tools-section">
-                <a className="button" href="/">Button 1</a>
-                <a className="button" href="/">Button 2</a>
-                <a className="button" href="/">Button 3</a>
-                <a className="button" href="/">Button 4</a>
-            </div>
+            <Home />
 
         </div>
     );
