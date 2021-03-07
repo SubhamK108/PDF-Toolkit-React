@@ -1,4 +1,5 @@
 import React, { ReactElement } from "react";
+import { Link } from "react-router-dom";
 
 const Home: React.FC = (): ReactElement => {
     return (
@@ -13,10 +14,21 @@ const Home: React.FC = (): ReactElement => {
             </div>
 
             <div className="tools-section">
-                <a className="button" href="/">Button 1</a>
-                <a className="button" href="/">Button 2</a>
-                <a className="button" href="/">Button 3</a>
-                <a className="button" href="/">Button 4</a>
+                <Link to="/pdfmerger">
+                    <button className="button">Merger</button>
+                </Link>
+
+                <Link to="/pdfencryptor">
+                    <button className="button">Encryptor</button>
+                </Link>
+
+                <Link to="/pdfpagedeleter">
+                    <button className="button">Page Deleter</button>
+                </Link>
+                
+                <Link to="imagetopdf">
+                    <button className="button">Image to PDF</button>
+                </Link>
             </div>
 
         </div>
