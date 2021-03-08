@@ -17,6 +17,27 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+    @media screen and (max-width: 768px) {
+        .header {
+            font-size: 18px;
+            margin-bottom: -72px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .header {
+            font-size: 18px;
+            margin-bottom: -72px;
+        }
+    }
+
+    @media screen and (max-width: 360px) {
+        .header {
+            font-size: 18px;
+            margin-bottom: -72px;
+        }
+    }
+
 .tools {
     height: 15vh;
     display: flex;
@@ -27,6 +48,24 @@
     font-size: 22px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+    @media screen and (max-width: 768px) {
+        .tools {
+            font-size: 14px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .tools {
+            font-size: 14px;
+        }
+    }
+
+    @media screen and (max-width: 360px) {
+        .tools {
+            font-size: 14px;
+        }
+    }
 
 .tools-section {
     height: 22vh;
@@ -40,10 +79,10 @@
 .button {
     color: #fff;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 21px;
     font-family: Arial, Helvetica, sans-serif;
     background: #2a45bb;
-    padding: 20px;
+    padding: 14px;
     border-radius: 4px;
     border: none;
     margin: 22px;
