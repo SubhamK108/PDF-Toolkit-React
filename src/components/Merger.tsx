@@ -13,6 +13,11 @@ const Merger: React.FC = (): ReactElement => {
                 <h4 className="sub-tools">Limit - 20 Files / 20 MB Each</h4>
             </div>
 
+            <div className="dropzone">
+                <input type="file" />
+                Drag and Drop or Click to Upload.
+            </div>
+
         </div>
     );
 }
