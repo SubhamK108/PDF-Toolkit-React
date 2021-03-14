@@ -70,6 +70,22 @@ const Merger: React.FC = (): ReactElement => {
         tempFileArray = null;
     }
 
+    const MoveFileUp = (file: UploadedFile): void => {
+        let index: number = fileArray!.indexOf(file);
+        let tempFileArray: UploadedFile[] | null = fileArray!.filter(x => x.Id !== file.Id);
+        tempFileArray!.splice(index - 1, 0, file);
+        setFileArray(tempFileArray);
+        tempFileArray = null;
+    }
+
+    const MoveFileDown = (file: UploadedFile): void => {
+        let index: number = fileArray!.indexOf(file);
+        let tempFileArray: UploadedFile[] | null = fileArray!.filter(x => x.Id !== file.Id);
+        tempFileArray!.splice(index + 1, 0, file);
+        setFileArray(tempFileArray);
+        tempFileArray = null;
+    }
+
     return (
         <div>
 
@@ -89,7 +105,7 @@ const Merger: React.FC = (): ReactElement => {
 
             {uploadInitiated ? ((!uploadCompleted && !error) ? <UploadLoader UploadMessage={uploadMessage} /> : <UploadDone UploadMessage={uploadMessage} ErrorMessage={errorMessage} />) : ""}
 
-            {(uploadCompleted && !error) ? <FileListDisplay FileArray={fileArray} RemoveFile={RemoveFile} /> : ""}
+            {(uploadCompleted && !error) ? <FileListDisplay FileArray={fileArray} RemoveFile={RemoveFile} MoveFileUp={MoveFileUp} MoveFileDown={MoveFileDown} /> : ""}
 
         </div>
     );
