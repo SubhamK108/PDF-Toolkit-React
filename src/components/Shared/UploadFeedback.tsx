@@ -1,17 +1,14 @@
 import React, { ReactElement } from "react";
 import "../../assets/Loader.css"
 
-
 interface UploadLoaderProps {
     UploadMessage: string
 };
-
 
 interface UploadDoneProps {
     UploadMessage: string,
     ErrorMessage: string
 };
-
 
 const UploadLoader: React.FC<UploadLoaderProps> = (props): ReactElement => {
     return (
@@ -22,10 +19,6 @@ const UploadLoader: React.FC<UploadLoaderProps> = (props): ReactElement => {
     );
 }
 
-
-export default UploadLoader;
-
-
 const UploadDone: React.FC<UploadDoneProps> = (props): ReactElement => {
     return (
         <div>
@@ -35,4 +28,4 @@ const UploadDone: React.FC<UploadDoneProps> = (props): ReactElement => {
     );
 }
 
-export { UploadDone }
+export { UploadLoader, UploadDone }

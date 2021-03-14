@@ -3,8 +3,7 @@ import "../../assets/Loader.css";
 import "@fortawesome/fontawesome-free/css/all.css"
 import UploadedFile from "../Models/UploadedFile";
 import FileListDisplay from "./FileListDisplay";
-import UploadLoader, { UploadDone } from "../Shared/UploadLoader";
-
+import { UploadLoader, UploadDone } from "../Shared/UploadFeedback";
 
 const Merger: React.FC = (): ReactElement => {
 

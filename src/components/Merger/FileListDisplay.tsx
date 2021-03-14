@@ -1,14 +1,12 @@
 import React, { ReactElement } from "react";
 import UploadedFile from "../Models/UploadedFile";
 
-
 interface FileListDisplayProps {
     FileArray: UploadedFile[] | null,
     RemoveFile: Function,
     MoveFileUp: Function,
     MoveFileDown: Function
 };
-
 
 const FileListDisplay: React.FC<FileListDisplayProps> = (props): ReactElement => {
     return (
@@ -24,6 +22,5 @@ const FileListDisplay: React.FC<FileListDisplayProps> = (props): ReactElement =>
         </div>
     );
 }
-
 
 export default FileListDisplay;
