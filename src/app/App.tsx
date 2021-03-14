@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import "@fortawesome/fontawesome-free/css/all.css"
 import '../assets/App.css';
 import '../assets/Loader.css';
 import Encryptor from '../components/Encryptor';

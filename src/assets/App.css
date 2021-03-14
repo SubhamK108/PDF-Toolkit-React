@@ -145,6 +145,18 @@
     cursor: pointer;
 }
 
+.button-secondary {
+    color: #fff;
+    text-decoration: none;
+    font-size: 21px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #2a45bb;
+    padding: 14px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
 .dropzone {
     border: 4px dashed #05576b;
     padding: 70px;

@@ -1,8 +1,8 @@
 import React, { ReactElement, useState } from "react";
-import "@fortawesome/fontawesome-free/css/all.css"
 import UploadedFile from "../Models/UploadedFile";
 import FileListDisplay from "./FileListDisplay";
 import { UploadLoader, UploadDone } from "../Shared/UploadFeedback";
+import { SubmitProgress } from "../Shared/SubmitFeedback";
 
 const Merger: React.FC = (): ReactElement => {
 
@@ -12,6 +12,8 @@ const Merger: React.FC = (): ReactElement => {
     const [error, setError] = useState<boolean>(false);
     const [uploadInitiated, setUploadInitiated] = useState<boolean>(false);
     const [uploadCompleted, setUploadCompleted] = useState<boolean>(false);
+    const [submitMessage, setSubmitMessage] = useState<string>("");
+    const maxFilesAllowed: number = 4;
 
     const RefreshApp = (): void => {
         setFileArray([]);
@@ -20,21 +22,22 @@ const Merger: React.FC = (): ReactElement => {
         setError(false);
         setUploadInitiated(false);
         setUploadCompleted(false);
+        setSubmitMessage("");
     }
 
     const onInputFileChange = (inputFileChange: FileList | null): void => {
         RefreshApp();
         setUploadInitiated(true);
-        setUploadMessage("Uploading...");
+        setUploadMessage("Uploading your files... ⏳");
 
-        if (inputFileChange!.length > 4) {
-            setErrorMessage("Cannot Upload more than 4 PDF Files");
-            setUploadMessage("Upload Again");
+        if (inputFileChange!.length > maxFilesAllowed) {
+            setUploadMessage("Upload failed! ❌");
+            setErrorMessage(`Max ${maxFilesAllowed} PDF files allowed!`);
             setError(true);
             return;
         } else if (inputFileChange!.length === 1) {
-            setErrorMessage("Just 1 PDF File uploaded which is not enough");
-            setUploadMessage("Upload Again.")
+            setUploadMessage("");
+            setErrorMessage("Just 1 PDF file uploaded which is not enough! You have to upload at least 2 files. 😕");
             setError(true);
             return;
         }
@@ -49,7 +52,7 @@ const Merger: React.FC = (): ReactElement => {
             setFileArray(fileArray => fileArray!.concat(currentFile));
         }
 
-        setUploadMessage(`Uploaded ${inputFileChange!.length} PDF Files`);
+        setUploadMessage(`${inputFileChange!.length} PDF files uploaded. ✅`);
         setUploadCompleted(true);
     }
 
@@ -58,11 +61,11 @@ const Merger: React.FC = (): ReactElement => {
         setFileArray(tempFileArray);
 
         if (fileArray!.length - 1 === 1) {
-            setErrorMessage("Just 1 PDF File remaining which is not enough");
-            setUploadMessage("Upload Again.")
+            setUploadMessage("");
+            setErrorMessage("Not enough PDF files left! At least 2 files are needed. 😕");
             setError(true);
         } else {
-            setUploadMessage(`${fileArray!.length - 1} PDF Files are remaining`);
+            setUploadMessage(`${fileArray!.length - 1} PDF files are left. ✅`);
         }
 
         tempFileArray = null;
@@ -82,6 +85,10 @@ const Merger: React.FC = (): ReactElement => {
         tempFileArray!.splice(index + 1, 0, file);
         setFileArray(tempFileArray);
         tempFileArray = null;
+    }
+
+    const Submit = (): void => {
+        setSubmitMessage(`Merging ${fileArray!.length} PDF files, please have patience... ⏳`);
     }
 
     return (
@@ -104,6 +111,8 @@ const Merger: React.FC = (): ReactElement => {
             {uploadInitiated ? ((!uploadCompleted && !error) ? <UploadLoader UploadMessage={uploadMessage} /> : <UploadDone UploadMessage={uploadMessage} ErrorMessage={errorMessage} />) : ""}
 
             {(uploadCompleted && !error) ? <FileListDisplay FileArray={fileArray} RemoveFile={RemoveFile} MoveFileUp={MoveFileUp} MoveFileDown={MoveFileDown} /> : ""}
+
+            {(uploadCompleted && !error) ? <SubmitProgress SubmitMessage={submitMessage} Submit={Submit} /> : ""}
 
         </div>
     );
