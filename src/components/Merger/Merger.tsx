@@ -34,6 +34,11 @@ const Merger: React.FC = (): ReactElement => {
             setUploadMessage("Upload Again");
             setError(true);
             return;
+        } else if (inputFileChange!.length === 1) {
+            setErrorMessage("Just 1 PDF File uploaded which is not enough");
+            setUploadMessage("Upload Again.")
+            setError(true);
+            return;
         }
 
         for (let i: number = 0; i < inputFileChange!.length; i++) {
