@@ -1,5 +1,4 @@
 import React, { ReactElement } from "react";
-import "../../assets/Loader.css"
 
 interface UploadLoaderProps {
     UploadMessage: string

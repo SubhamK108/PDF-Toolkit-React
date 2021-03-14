@@ -1,5 +1,4 @@
 import React, { ReactElement, useState } from "react";
-import "../../assets/Loader.css";
 import "@fortawesome/fontawesome-free/css/all.css"
 import UploadedFile from "../Models/UploadedFile";
 import FileListDisplay from "./FileListDisplay";

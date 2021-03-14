@@ -1,18 +1,18 @@
 .loader {
     color: #ffffff;
-    font-size: 50px;
+    font-size: 35px;
     text-indent: -9999em;
     overflow: hidden;
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     margin: 72px auto;
     position: relative;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
     transform: translateZ(0);
-    -webkit-animation: load6 2.0s infinite ease, round 2.0s infinite ease;
-    animation: load6 2.0s infinite ease, round 2.0s infinite ease;
+    -webkit-animation: load6 0.5s infinite ease, round 0.5s infinite ease;
+    animation: load6 2s infinite ease, round 2s infinite ease;
 }
 
 @-webkit-keyframes load6 {

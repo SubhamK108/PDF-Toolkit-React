@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import '../assets/App.css';
+import '../assets/Loader.css';
 import Encryptor from '../components/Encryptor';
 import Home from '../components/Home';
 import ImageToPdf from '../components/ImageToPdf';
