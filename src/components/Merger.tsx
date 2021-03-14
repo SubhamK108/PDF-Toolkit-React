@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from "react";
 import "../assets/Loader.css";
+import "@fortawesome/fontawesome-free/css/all.css"
 
 
 const Merger: React.FC = (): ReactElement => {
@@ -45,7 +46,12 @@ const Merger: React.FC = (): ReactElement => {
 
             <div id="file-list" hidden>
                 {fileArray.map((file: File) => (
-                    <p className="file-display" key={file.lastModified}>{file.name}</p>
+                    <div key={file.lastModified} className="file-display">
+                        <p>{file.name}</p>
+                        <span className="icon solid fas fa-times-circle" title="Delete File" style={{paddingLeft: 20, cursor: "pointer"}}></span>
+                        {fileArray.indexOf(file) > 0 ? <span className="icon solid fas fa-arrow-circle-up" title="Move File Up" style={{paddingLeft: 10, cursor: "pointer"}}></span> : ""}
+                        {fileArray.indexOf(file) < (fileArray.length - 1) ? <span className="icon solid fas fa-arrow-circle-down" title="Move File Down" style={{paddingLeft: 10, cursor: "pointer"}}></span> : ""}
+                    </div>
                 ))}
             </div>
 
