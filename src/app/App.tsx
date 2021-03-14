@@ -4,7 +4,7 @@ import '../assets/App.css';
 import Encryptor from '../components/Encryptor';
 import Home from '../components/Home';
 import ImageToPdf from '../components/ImageToPdf';
-import Merger from '../components/Merger';
+import Merger from '../components/Merger/Merger';
 import PageDeleter from '../components/PageDeleter';
 
 const App: React.FC = (): ReactElement => {
