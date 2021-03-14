@@ -2,36 +2,23 @@ import React, { ReactElement, useState } from "react";
 import "../assets/Loader.css";
 
 
-interface FilesDisplayProps {
-    files: File[]
-};
-
-
 const Merger: React.FC = (): ReactElement => {
 
     const [fileArray, setFileArray] = useState<File[]>([]);
-    const [totalFiles, setTotalFiles] = useState<number>(0);
-    const [uploadDone, setUploadDone] = useState<boolean>(false);
 
     const onInputFileChange = (inputFileChange: FileList | null) => {
-        console.clear();
+        let loader: HTMLElement | null = document.getElementById("upload-loader");
+        let fileList: HTMLElement | null = document.getElementById("file-list");
+        loader!.hidden = false;
+
         let files: FileList | null = inputFileChange;
-        let totalFiles2: number = files!.length;
 
-        for (let i: number = 0; i < totalFiles2; i++) {
-            let fileName: string = files![i].name;
-            let fileSize: number = Math.round(files![i].size / 1024);
-
-            console.log(`File - ${i + 1} Details:`);
-            console.log(`File Name: ${fileName}`);
-            console.log(`File Size: ${fileSize} KB`);
-            console.log("");
-
+        for (let i: number = 0; i < files!.length; i++) {
             setFileArray(fileArray => fileArray.concat(files![i]));
         }
 
-        setTotalFiles(files!.length);
-        setUploadDone(true);
+        loader!.hidden = true;
+        fileList!.hidden = false;
     }
 
     return (
@@ -51,35 +38,19 @@ const Merger: React.FC = (): ReactElement => {
                 Drag and Drop or Click to Upload.
             </div>
 
-            {uploadDone === false ? "" : (totalFiles === 0 ? <UploadLoader /> : <FilesDisplay files={fileArray} />)}
+            <div id="upload-loader" hidden>
+                <h2 style={{fontSize: 21}} className="sub-tools">Uploading...</h2>
+                <div className="loader">Loading...</div>
+            </div>
+
+            <div id="file-list" hidden>
+                {fileArray.map((file: File) => (
+                    <p className="file-display" key={file.lastModified}>{file.name}</p>
+                ))}
+            </div>
 
         </div>
     );
 }
 
 export default Merger;
-
-
-const UploadLoader: React.FC = (): ReactElement => {
-    return (
-        <div>
-
-            <h2 style={{fontSize: 21}} className="sub-tools">Uploading...</h2>
-            <div className="loader">Loading...</div>
-
-        </div>
-    );
-}
-
-
-const FilesDisplay: React.FC<FilesDisplayProps> = (props): ReactElement => {
-    return (
-        <div>
-
-            {props.files.map((file: File) => (
-                <h4 key={file.lastModified} className="sub-tools">{file.name}</h4>
-            ))}
-
-        </div>
-    );
-}
