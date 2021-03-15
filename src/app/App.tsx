@@ -6,7 +6,7 @@ import '../assets/Loader.css';
 import Encryptor from '../components/Encryptor';
 import Home from '../components/Home';
 import ImageToPdf from '../components/ImageToPdf';
-import Merger from '../components/Merger/Merger';
+import Merger from '../components/merger/Merger';
 import PageDeleter from '../components/PageDeleter';
 
 const App: React.FC = (): ReactElement => {

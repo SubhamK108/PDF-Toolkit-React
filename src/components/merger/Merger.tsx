@@ -1,8 +1,8 @@
 import React, { ReactElement, useState } from "react";
-import UploadedFile from "../Models/UploadedFile";
+import UploadedFile from "../models/UploadedFile";
 import FileListDisplay from "./FileListDisplay";
-import { UploadLoader, UploadDone } from "../Shared/UploadFeedback";
-import { SubmitButton, SubmitProgress } from "../Shared/SubmitFeedback";
+import { UploadLoader, UploadDone } from "../shared/UploadFeedback";
+import { SubmitButton, SubmitProgress } from "../shared/SubmitFeedback";
 
 const Merger: React.FC = (): ReactElement => {
 
@@ -45,7 +45,7 @@ const Merger: React.FC = (): ReactElement => {
         }
 
         for (let i: number = 0; i < inputFileChange!.length; i++) {
-            
+
             let currentFile: UploadedFile = {
                 Id: (Math.random() + Math.random()),
                 Data: inputFileChange![i]
@@ -102,7 +102,7 @@ const Merger: React.FC = (): ReactElement => {
             </div>
 
             <div>
-                <h2 style={{fontSize: 21}} className="sub-tools">Upload your PDF files.</h2>
+                <h2 style={{ fontSize: 21 }} className="sub-tools">Upload your PDF files.</h2>
                 <h4 className="sub-tools">Limit - 20 Files / 20 MB Each</h4>
             </div>
 
