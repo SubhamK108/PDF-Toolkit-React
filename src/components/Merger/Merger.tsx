@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from "react";
 import UploadedFile from "../Models/UploadedFile";
 import FileListDisplay from "./FileListDisplay";
 import { UploadLoader, UploadDone } from "../Shared/UploadFeedback";
-import { SubmitProgress } from "../Shared/SubmitFeedback";
+import { SubmitButton, SubmitProgress } from "../Shared/SubmitFeedback";
 
 const Merger: React.FC = (): ReactElement => {
 
@@ -10,8 +10,9 @@ const Merger: React.FC = (): ReactElement => {
     const [uploadMessage, setUploadMessage] = useState<string>("");
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [error, setError] = useState<boolean>(false);
-    const [uploadInitiated, setUploadInitiated] = useState<boolean>(false);
-    const [uploadCompleted, setUploadCompleted] = useState<boolean>(false);
+    const [isUploadInitiated, setIsUploadInitiated] = useState<boolean>(false);
+    const [isUploadCompleted, setIsUploadCompleted] = useState<boolean>(false);
+    const [isSubmitCompleted, setIsSubmitCompleted] = useState<boolean>(false);
     const [submitMessage, setSubmitMessage] = useState<string>("");
     const maxFilesAllowed: number = 4;
 
@@ -20,14 +21,15 @@ const Merger: React.FC = (): ReactElement => {
         setUploadMessage("");
         setErrorMessage("");
         setError(false);
-        setUploadInitiated(false);
-        setUploadCompleted(false);
+        setIsUploadInitiated(false);
+        setIsUploadCompleted(false);
+        setIsSubmitCompleted(false);
         setSubmitMessage("");
     }
 
     const onInputFileChange = (inputFileChange: FileList | null): void => {
         RefreshApp();
-        setUploadInitiated(true);
+        setIsUploadInitiated(true);
         setUploadMessage("Uploading your files... ⏳");
 
         if (inputFileChange!.length > maxFilesAllowed) {
@@ -53,7 +55,7 @@ const Merger: React.FC = (): ReactElement => {
         }
 
         setUploadMessage(`${inputFileChange!.length} PDF files uploaded. ✅`);
-        setUploadCompleted(true);
+        setIsUploadCompleted(true);
     }
 
     const RemoveFile = (file: UploadedFile): void => {
@@ -89,6 +91,7 @@ const Merger: React.FC = (): ReactElement => {
 
     const Submit = (): void => {
         setSubmitMessage(`Merging ${fileArray!.length} PDF files, please have patience... ⏳`);
+        setIsSubmitCompleted(true);
     }
 
     return (
@@ -105,14 +108,16 @@ const Merger: React.FC = (): ReactElement => {
 
             <div className="dropzone">
                 <input onChange={e => onInputFileChange(e.target.files)} type="file" multiple accept="application/pdf" title="" />
-                Drag and Drop or Click to Upload.
+                Drag And Drop Files Or Click To Upload.
             </div>
 
-            {uploadInitiated ? ((!uploadCompleted && !error) ? <UploadLoader UploadMessage={uploadMessage} /> : <UploadDone UploadMessage={uploadMessage} ErrorMessage={errorMessage} />) : ""}
+            {isUploadInitiated ? ((!isUploadCompleted && !error) ? <UploadLoader UploadMessage={uploadMessage} /> : <UploadDone UploadMessage={uploadMessage} ErrorMessage={errorMessage} />) : ""}
 
-            {(uploadCompleted && !error) ? <FileListDisplay FileArray={fileArray} RemoveFile={RemoveFile} MoveFileUp={MoveFileUp} MoveFileDown={MoveFileDown} /> : ""}
+            {(isUploadCompleted && !error) ? <FileListDisplay FileArray={fileArray} RemoveFile={RemoveFile} MoveFileUp={MoveFileUp} MoveFileDown={MoveFileDown} /> : ""}
 
-            {(uploadCompleted && !error) ? <SubmitProgress SubmitMessage={submitMessage} Submit={Submit} /> : ""}
+            {(isUploadCompleted && !error && !isSubmitCompleted) ? <SubmitButton Submit={Submit} /> : ""}
+
+            {isSubmitCompleted ? <SubmitProgress SubmitMessage={submitMessage} /> : ""}
 
         </div>
     );

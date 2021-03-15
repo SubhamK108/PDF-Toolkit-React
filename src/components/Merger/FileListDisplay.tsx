@@ -10,7 +10,7 @@ interface FileListDisplayProps {
 
 const FileListDisplay: React.FC<FileListDisplayProps> = (props): ReactElement => {
     return (
-        <div id="file-list" style={{marginBottom: 35}}>
+        <div style={{marginBottom: 35}}>
             {(props.FileArray || []).map((file: UploadedFile) => (
                 <div key={file.Id} className="file-display">
                     <p>{file.Data.name}</p>
