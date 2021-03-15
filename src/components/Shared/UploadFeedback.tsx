@@ -4,8 +4,7 @@ interface UploadLoaderProps {
     UploadMessage: string
 };
 
-interface UploadDoneProps {
-    UploadMessage: string,
+interface UploadDoneProps extends UploadLoaderProps {
     ErrorMessage: string
 };
 
