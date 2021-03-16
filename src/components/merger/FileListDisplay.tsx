@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import UploadedFile from "../models/UploadedFile";
+import { UploadedFile } from "../models/UploadedFile";
 
 interface FileListDisplayProps {
     FileArray: UploadedFile[] | null,

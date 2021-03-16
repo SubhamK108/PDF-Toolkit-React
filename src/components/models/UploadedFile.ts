@@ -3,4 +3,4 @@ interface UploadedFile {
     Data: File
 };
 
-export default UploadedFile;
+export type { UploadedFile }
