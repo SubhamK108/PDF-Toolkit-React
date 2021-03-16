@@ -12,7 +12,9 @@ interface MergerSessionState {
 };
 
 interface MergerSession {
-    MaxFilesAllowed: number
+    MaxFilesAllowed: number,
+    MaxSizeAllowed: number,
+    FileTypeAllowed: string
 };
 
 export type { MergerSession, MergerSessionState }

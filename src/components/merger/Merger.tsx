@@ -18,7 +18,9 @@ const Merger: React.FC = (): ReactElement => {
     };
 
     const session: MergerSession = {
-        MaxFilesAllowed: 4
+        MaxFilesAllowed: 20,
+        MaxSizeAllowed: 20971520,
+        FileTypeAllowed: "application/pdf"
     };
 
     const [sessionState, setSessionState] = useState<MergerSessionState>(initialState);
@@ -57,6 +59,28 @@ const Merger: React.FC = (): ReactElement => {
         }
 
         for (let i: number = 0; i < inputFileChange!.length; i++) {
+            if (inputFileChange![i].size > session.MaxSizeAllowed) {
+                setSessionState(prevstate => ({
+                    ...prevstate,
+                    UploadMessage: "Upload failed! ❌",
+                    ErrorMessage: "Max 20 MB size allowed for each file!",
+                    Error: true
+                }));
+
+                return;
+            }
+
+            if (inputFileChange![i].type !== session.FileTypeAllowed) {
+                setSessionState(prevState => ({
+                    ...prevState,
+                    UploadMessage: "Upload failed! ❌",
+                    ErrorMessage: "You can only upload PDF files!",
+                    Error: true
+                }));
+
+                return;
+            }
+
             let currentFile: UploadedFile = {
                 Id: (Math.random() + Math.random()),
                 Data: inputFileChange![i]
