@@ -56,6 +56,9 @@ const Merger: React.FC = (): ReactElement => {
             }));
 
             return;
+        } else if (inputFileChange!.length === 0) {
+            RefreshApp();
+            return;
         }
 
         for (let i: number = 0; i < inputFileChange!.length; i++) {
